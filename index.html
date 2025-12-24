@@ -8,8 +8,9 @@
 body {
   background: black;
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: monospace;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -17,21 +18,28 @@ body {
 
 .container {
   border: 2px solid red;
-  box-shadow: 0 0 30px red;
+  box-shadow: 0 0 40px red;
   padding: 25px;
-  width: 330px;
+  width: 340px;
   text-align: center;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px red; }
+  to { box-shadow: 0 0 45px red; }
 }
 
 h1 {
   color: red;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 }
 
 .tagline {
   font-size: 12px;
   color: #ff4d4d;
   margin-bottom: 10px;
+  min-height: 16px;
 }
 
 input {
@@ -74,6 +82,14 @@ button:hover {
   font-weight: bold;
   border-radius: 5px;
 }
+
+/* Footer */
+footer {
+  margin-top: 15px;
+  font-size: 11px;
+  color: #aaa;
+  text-align: center;
+}
 </style>
 </head>
 
@@ -81,7 +97,7 @@ button:hover {
 
 <div class="container">
   <h1>ERRORX</h1>
-  <p class="tagline">Project ERRORX: Life Protocol</p>
+  <p class="tagline" id="typing"></p>
 
   <p>Enter Your Birth Date</p>
   <input type="date" id="dob">
@@ -97,17 +113,53 @@ button:hover {
   </a>
 </div>
 
+<footer>
+  © 2025 <strong>Abdullah Suleman</strong> — All Rights Reserved  
+  <br>
+  Project ERRORX: Life Protocol
+</footer>
+
+<!-- Background Music (Suzume-inspired vibe, royalty-free) -->
+<audio id="bgm" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/03/28/audio_0f2f8c1a8c.mp3?filename=anime-piano-ambient-141272.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Hacker Beep -->
+<audio id="beep">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-system-beep-buzzer-fail-2964.mp3">
+</audio>
+
 <script>
+// Typing Effect
+let text = "Project ERRORX: Life Protocol";
+let i = 0;
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 80);
+  }
+}
+typeEffect();
+
+// Main Function
 function calculate() {
   let dob = document.getElementById("dob").value;
   if (!dob) {
-    alert("ERRORX ALERT: Enter Birth Date");
+    alert("ERRORX ALERT: ENTER BIRTH DATE");
     return;
+  }
+
+  // Sound
+  document.getElementById("beep").play();
+
+  // Vibration (mobile)
+  if (navigator.vibrate) {
+    navigator.vibrate([200, 100, 200]);
   }
 
   let birthDate = new Date(dob);
   let now = new Date();
-
   let diff = now - birthDate;
 
   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -124,10 +176,10 @@ function calculate() {
     ⏱️ MINUTES LIVED: ${minutes}<br>
     ⚡ SECONDS LIVED: ${seconds}<br>
     ❤️ HEARTBEATS: ${heartbeats}<br><br>
-    <span style="color:lime;">SYSTEM STATUS: ONLINE</span>
+    <span style="color:lime;">SYSTEM STATUS: ACCESS GRANTED</span>
   `;
 }
 </script>
 
 </body>
-  </html>
+</html>
