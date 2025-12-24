@@ -83,7 +83,6 @@ button:hover {
   border-radius: 5px;
 }
 
-/* Footer */
 footer {
   margin-top: 15px;
   font-size: 11px;
@@ -119,18 +118,18 @@ footer {
   Project ERRORX: Life Protocol
 </footer>
 
-<!-- Background Music (Suzume-inspired vibe, royalty-free) -->
+<!-- 🎵 LOCAL SUZUME MUSIC -->
 <audio id="bgm" autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2023/03/28/audio_0f2f8c1a8c.mp3?filename=anime-piano-ambient-141272.mp3" type="audio/mpeg">
+  <source src="Suzume no Tojimari『Suzume』Theme Song.mp3.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Hacker Beep -->
+<!-- Beep -->
 <audio id="beep">
   <source src="https://assets.mixkit.co/sfx/preview/mixkit-system-beep-buzzer-fail-2964.mp3">
 </audio>
 
 <script>
-// Typing Effect
+// Typing
 let text = "Project ERRORX: Life Protocol";
 let i = 0;
 function typeEffect() {
@@ -142,7 +141,6 @@ function typeEffect() {
 }
 typeEffect();
 
-// Main Function
 function calculate() {
   let dob = document.getElementById("dob").value;
   if (!dob) {
@@ -150,19 +148,14 @@ function calculate() {
     return;
   }
 
-  // Sound
   document.getElementById("beep").play();
+  if (navigator.vibrate) navigator.vibrate([200,100,200]);
 
-  // Vibration (mobile)
-  if (navigator.vibrate) {
-    navigator.vibrate([200, 100, 200]);
-  }
-
-  let birthDate = new Date(dob);
+  let birth = new Date(dob);
   let now = new Date();
-  let diff = now - birthDate;
+  let diff = now - birth;
 
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let days = Math.floor(diff / (1000*60*60*24));
   let hours = days * 24;
   let minutes = hours * 60;
   let seconds = minutes * 60;
