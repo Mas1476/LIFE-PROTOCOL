@@ -103,6 +103,9 @@ footer {
 
   <button onclick="calculate()">⚡ EXECUTE SYSTEM</button>
 
+  <!-- 🎵 PLAY MUSIC BUTTON -->
+  <button onclick="playMusic()">🎵 PLAY MUSIC</button>
+
   <div id="output"></div>
 
   <a class="whatsapp"
@@ -118,8 +121,8 @@ footer {
   Project ERRORX: Life Protocol
 </footer>
 
-<!-- 🎵 LOCAL SUZUME MUSIC -->
-<audio id="bgm" autoplay loop>
+<!-- 🎵 LOCAL SUZUME MUSIC (NO AUTOPLAY) -->
+<audio id="bgm" loop>
   <source src="Suzume no Tojimari『Suzume』Theme Song.mp3.mp3" type="audio/mpeg">
 </audio>
 
@@ -129,7 +132,7 @@ footer {
 </audio>
 
 <script>
-// Typing
+// Typing Effect
 let text = "Project ERRORX: Life Protocol";
 let i = 0;
 function typeEffect() {
@@ -141,6 +144,17 @@ function typeEffect() {
 }
 typeEffect();
 
+// 🎵 PLAY MUSIC FUNCTION
+function playMusic() {
+  let music = document.getElementById("bgm");
+  music.play().then(() => {
+    console.log("Music Playing");
+  }).catch(() => {
+    alert("Tap again to allow music");
+  });
+}
+
+// Main Function
 function calculate() {
   let dob = document.getElementById("dob").value;
   if (!dob) {
