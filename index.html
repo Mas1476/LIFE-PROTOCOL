@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project ERRORX: Life Protocol</title>
+
+<style>
+body {
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  border: 2px solid red;
+  box-shadow: 0 0 30px red;
+  padding: 25px;
+  width: 330px;
+  text-align: center;
+}
+
+h1 {
+  color: red;
+  letter-spacing: 3px;
+}
+
+.tagline {
+  font-size: 12px;
+  color: #ff4d4d;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #111;
+  color: white;
+  border: 1px solid red;
+}
+
+button {
+  margin-top: 12px;
+  padding: 12px;
+  width: 100%;
+  background: red;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: darkred;
+}
+
+#output {
+  margin-top: 15px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.whatsapp {
+  display: block;
+  margin-top: 15px;
+  padding: 10px;
+  background: #25D366;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>ERRORX</h1>
+  <p class="tagline">Project ERRORX: Life Protocol</p>
+
+  <p>Enter Your Birth Date</p>
+  <input type="date" id="dob">
+
+  <button onclick="calculate()">⚡ EXECUTE SYSTEM</button>
+
+  <div id="output"></div>
+
+  <a class="whatsapp"
+     href="https://whatsapp.com/channel/0029Vb5eufGInlqIVg1R3U0Z"
+     target="_blank">
+     🔥 JOIN ERRORX WHATSAPP CHANNEL
+  </a>
+</div>
+
+<script>
+function calculate() {
+  let dob = document.getElementById("dob").value;
+  if (!dob) {
+    alert("ERRORX ALERT: Enter Birth Date");
+    return;
+  }
+
+  let birthDate = new Date(dob);
+  let now = new Date();
+
+  let diff = now - birthDate;
+
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let hours = days * 24;
+  let minutes = hours * 60;
+  let seconds = minutes * 60;
+  let age = Math.floor(days / 365);
+  let heartbeats = Math.floor(seconds * 1.2);
+
+  document.getElementById("output").innerHTML = `
+    🎂 AGE: ${age} Years<br>
+    📆 DAYS LIVED: ${days}<br>
+    ⏳ HOURS LIVED: ${hours}<br>
+    ⏱️ MINUTES LIVED: ${minutes}<br>
+    ⚡ SECONDS LIVED: ${seconds}<br>
+    ❤️ HEARTBEATS: ${heartbeats}<br><br>
+    <span style="color:lime;">SYSTEM STATUS: ONLINE</span>
+  `;
+}
+</script>
+
+</body>
+  </html>
